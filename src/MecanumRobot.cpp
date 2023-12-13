@@ -245,6 +245,8 @@ namespace MecanumRobot{
                 break; 
         }
 
+        //show power stage status on pin 1
+        digitalWrite(1, controlState == ControlState::ENABLED);
 
         //============= DEBUG PRINT ==============
 
@@ -270,13 +272,18 @@ namespace MecanumRobot{
     }
 
 
-
     
 
     //===== SYSTEM STARTUP ======
 
     void init(){
         Serial.begin(9600);
+
+        pinMode(0, OUTPUT);
+        digitalWrite(0, HIGH);
+
+        pinMode(1, OUTPUT);
+
         internalLed.init();
         redLed.init();
         greenLed.init();
